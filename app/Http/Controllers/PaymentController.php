@@ -12,41 +12,32 @@ use Illuminate\View\View;
 final class PaymentController extends Controller
 {
     public function __construct(protected readonly StudentService $studentService)
+    {}
+
+    /**
+     * Display the specified resource.
+     */
+    public function index(Student $student)
     {
-       
+        $paymentDetails = $this->studentService->getStudentFeePayments();
+
+        return view('payments.index', compact('paymentDetails'));
     }
 
     public function addPayment()
     {
-        return view('payments.create');
+        $students = $this->studentService->getCourseEnrollStudent();
+
+        return view('payments.create', compact('students'));
     }
 
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        return view('students.index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create(): View
-    {
-        return view('students.create');
-    }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreStudentRequest $request): RedirectResponse
+    public function savePayment(Request $request): RedirectResponse
     {
-        $studentData = $request->validated();
-        $this->studentService->create($studentData);
-
-        return redirect()->route('students.index')
-            ->with('success', 'Student created successfully.');
+      return  $this->studentService->storePayment($request);
     }
 
     /**

@@ -14,45 +14,28 @@
                     <div class="panel-body">
                         <div class="form-group col-md-10">
                             <label for="brand">Course Name:</label>
-                            <input type="text" name="Course_name"
+                            <input type="text" name="course_name"
                              value =""  
                              class="form-control" id="usr">
-                            @error('student_name')
+                            @error('course_name')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group col-md-10">
-                            <label for="brand">Student Email:</label>
-                            <input type="email" name="student_email"
-                             value =""  
+                            <label for="brand">Course Duration:</label>
+                            <input type="number" name="duration"
+                             value =""  min="1" max="24"
                              class="form-control" id="">
-                            @error('student_email')
+                            @error('duration')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group col-md-10">
-                            <label for="brand">Student Phone:</label>
-                            <input type="email" name="student_number"
+                            <label for="brand">Fee Per Month:</label>
+                            <input type="number" step="0.01" min="0" name="fee_per_month"
                              value =""  
                              class="form-control" id="">
-                            @error('student_number')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group col-md-10">
-                            <label for="brand">Student Date of Birth:</label>
-                            <input type="email" name="student_dob"
-                             value =""  
-                             class="form-control" id="">
-                            @error('student_dob')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div><div class="form-group col-md-10">
-                            <label for="brand">Student Address:</label>
-                            <textarea  name="student_address"
-                             value =""  
-                             class="form-control" id=""> </textarea>
-                            @error('student_address')
+                            @error('fee_per_month')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>

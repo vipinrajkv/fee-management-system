@@ -23,10 +23,17 @@ class StoreStudentRequest extends FormRequest
     {
         return [
             'student_name' => 'required',
-            'student_email' => 'required',
-            'student_number' => 'required',
+            'student_email' => 'required|email|unique:students,student_email',
+            'student_phone' => 'required',
             'student_dob' => 'required',
             'student_address' => 'required',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'student_email.unique' => 'This email is already taken.',
         ];
     }
 }

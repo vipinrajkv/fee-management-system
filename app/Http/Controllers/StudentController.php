@@ -18,9 +18,11 @@ final class StudentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
-        return view('students.index');
+        $students = $this->studentService->getStudents();
+
+        return view('students.index',compact('students'));
     }
 
     /**
@@ -37,10 +39,42 @@ final class StudentController extends Controller
     public function store(StoreStudentRequest $request): RedirectResponse
     {
         $studentData = $request->validated();
+        
         $this->studentService->create($studentData);
 
         return redirect()->route('students.index')
             ->with('success', 'Student created successfully.');
+    }
+
+    public function assignToCourse(): View
+    {
+        $students = $this->studentService->getStudents();
+        $courses = $this->studentService->getAllCourses();
+
+        return view('students.assign_to_course', compact('courses','students'));
+    }
+
+    public function addCourseToStudent(Request $request): RedirectResponse
+    {
+        $studentId = $request->student;
+        $courseIds = $request->course;
+
+        if (!empty($courseIds)) {
+             $this->studentService->assignCourseToStudent($studentId, $courseIds);
+        }
+        else {
+            return redirect()->back()->with('error', 'Please select Inputs.');
+        }
+
+        return redirect()->route('students.index')
+            ->with('success', 'Student created successfully.');
+    }
+
+    public function studentCourseFeeList(Request $request): View
+    {
+        $studentCourseFees = $this->studentService->getStudentsCourseFeesList();
+        // dd($studentCourseFees);
+        return view('students.student_course_fee', compact('studentCourseFees'));
     }
 
     /**

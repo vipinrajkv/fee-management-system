@@ -20,7 +20,9 @@ final class CourseController extends Controller
      */
     public function index(): View
     {
-        return view('courses.index');
+        $courses = $this->courseService->getCoursesWithStudents();
+
+        return view('courses.index', compact('courses'));
     }
 
     /**
@@ -56,7 +58,8 @@ final class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        return view('courses.edit');
+        
+        return view('courses.edit')->with('course', $course);
     }
 
     /**
@@ -89,5 +92,11 @@ final class CourseController extends Controller
        } 
 
        return redirect()->route('courses.index');
+    }
+
+
+    public function getStudentEnrollCourse(int $studentId)
+    {
+        return $this->courseService->getStudentEnrollCourse($studentId);
     }
 }

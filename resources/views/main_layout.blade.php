@@ -29,15 +29,14 @@
     <link rel="stylesheet" type="text/css"
         href="http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.css"> --}}
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css"
+        rel="stylesheet" />
 
-<script src=
-"https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js">
-      </script>  
-      <link href=
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+    <link href=
 "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css"
-      rel="stylesheet">
+        rel="stylesheet">
 </head>
 
 <body>
@@ -102,84 +101,71 @@
         </div>
     </nav>
     <div class="container-fluid main-container">
-        {{-- @auth --}}
-            <div class="col-md-2 sidebar">
-                <div class="row">
-                    <!-- uncomment code for absolute positioning tweek see top comment in css -->
-                    <div class="absolute-wrapper"> </div>
-                    <!-- Menu -->
-                    <div class="side-menu">
-                        <nav class="navbar navbar-default" role="navigation">
-                            <!-- Main Menu -->
-                            <div class="side-menu-container">
-                                <ul class="nav navbar-nav">
-                                    <li class="active"><a href="#"><span class="glyphicon glyphicon-dashboard"></span>
-                                            Dashboard</a></li>
+        <div class="col-md-2 sidebar">
+            <div class="row">
+                <div class="absolute-wrapper"> </div>
+                <!-- Menu -->
+                <div class="side-menu">
+                    <nav class="navbar navbar-default" role="navigation">
+                        <!-- Main Menu -->
+                        <div class="side-menu-container">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="#"><span class="glyphicon glyphicon-dashboard"></span>
+                                        Dashboard</a></li>
 
-                                            <li class="panel panel-default" id="dropdown">
-                                                <a data-toggle="collapse" href="#dropdown-lvl1">
-                                                    <span class="glyphicon glyphicon-user"></span> Students <span class="caret"></span>
-                                                </a>
-                                                <div id="dropdown-lvl1" class="panel-collapse collapse">
-                                                    <div class="panel-body">
-                                                        <ul class="nav navbar-nav">
-                                                            <li><a href="{{ route('students.create') }}">Add Student</a></li>
-                                                            <li><a href="{{ route('students.index') }}">View Student</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="panel panel-default" id="dropdown">
-                                                <a data-toggle="collapse" href="#dropdown-lvl2">
-                                                    <span class="glyphicon glyphicon-user"></span>Courses<span class="caret"></span>
-                                                </a>
-                                                <div id="dropdown-lvl2" class="panel-collapse collapse">
-                                                    <div class="panel-body">
-                                                        <ul class="nav navbar-nav">
-                                                            <li><a href="{{ route('courses.create') }}">Add Courses</a></li>
-                                                            <li><a href="{{ route('courses.index') }}">View Courses</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="panel panel-default" id="dropdown">
-                                                <a data-toggle="collapse" href="#dropdown-lvl3">
-                                                    <span class="glyphicon glyphicon-user"></span>Payments / Fee <span class="caret"></span>
-                                                </a>
-                                                <div id="dropdown-lvl3" class="panel-collapse collapse">
-                                                    <div class="panel-body">
-                                                        <ul class="nav navbar-nav">
-                                                            <li><a href="{{ route('add.payment') }}">Add Payment</a></li>
-                                                            <li><a href="#">View Payments</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="panel panel-default" id="dropdown">
-                                                <a data-toggle="collapse" href="#dropdown-lvl1">
-                                                    <span class="glyphicon glyphicon-user"></span>Reports <span class="caret"></span>
-                                                </a>
-                                                <div id="dropdown-lvl1" class="panel-collapse collapse">
-                                                    <div class="panel-body">
-                                                        <ul class="nav navbar-nav">
-                                                            <li><a href="#">Add Payment</a></li>
-                                                            <li><a href="#">View Payments</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                    <li><a href=""><span class="glyphicon glyphicon glyphicon-user"></span> Clients</a>
-                                    </li>
-                                    {{-- @endrole --}}
-                                    <!-- Dropdown-->
-                                    
-                                </ul>
-                            </div><!-- /.navbar-collapse -->
-                        </nav>
+                                <li class="panel panel-default" id="dropdown">
+                                    <a data-toggle="collapse" href="#dropdown-lvl1">
+                                        <span class="glyphicon glyphicon-user"></span> Students <span
+                                            class="caret"></span>
+                                    </a>
+                                    <div id="dropdown-lvl1" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ul class="nav navbar-nav">
+                                                <li><a href="{{ route('students.create') }}">Add Student</a></li>
+                                                <li><a href="{{ route('students.index') }}">View Student</a></li>
+                                                <li><a href="{{ route('student.assign.course') }}">Assign Courses To
+                                                        Student</a></li>
+                                                <li><a href="{{ route('student.courses.feeslist') }}">Students Courses
+                                                        & Fees</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="panel panel-default" id="dropdown">
+                                    <a data-toggle="collapse" href="#dropdown-lvl2">
+                                        <span class="glyphicon glyphicon-user"></span>Courses<span
+                                            class="caret"></span>
+                                    </a>
+                                    <div id="dropdown-lvl2" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ul class="nav navbar-nav">
+                                                <li><a href="{{ route('courses.create') }}">Add Courses</a></li>
+                                                <li><a href="{{ route('courses.index') }}">View Courses</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="panel panel-default" id="dropdown">
+                                    <a data-toggle="collapse" href="#dropdown-lvl3">
+                                        <span class="glyphicon glyphicon-user"></span>Payments / Fee <span
+                                            class="caret"></span>
+                                    </a>
+                                    <div id="dropdown-lvl3" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ul class="nav navbar-nav">
+                                                <li><a href="{{ route('add.payment') }}">Add Payment</a></li>
+                                                <li><a href="{{ route('student.fee.payment') }}">View Payments</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li> 
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
+                    </nav>
 
-                    </div>
                 </div>
             </div>
+        </div>
         {{-- @endauth --}}
 
         @yield('content')
@@ -192,50 +178,8 @@
         </p>
     </footer>
     <script type="text/javascript">
-        // $(function() {
-        //     var table = $('#daterange_table').DataTable({
-        //         processing: true,
-        //         serverSide: true,
-        //         ajax: "",
-        //         pageLength: 10,
-        //         columns: [{
-        //                 data: 'id',
-        //                 name: 'id'
-        //             },
-        //             {
-        //                 data: 'title',
-        //                 name: 'title'
-        //             },
-        //             {
-        //                 data: 'description',
-        //                 name: 'description'
-        //             },
-        //             {
-        //                 data: 'user',
-        //                 name: 'user'
-        //             },
-        //             {
-        //                 data: 'client',
-        //                 name: 'client'
-        //             },
-        //             {
-        //                 data: 'deadline',
-        //                 name: 'deadline'
-        //             },
-        //             {
-        //                 data: 'action',
-        //                 name: 'action',
-        //                 orderable: false,
-        //                 searchable: false
-        //             },
-        //         ]
-        //     });
-
-        // });
         $(document).ready(function() {
-
             $("[data-toggle=tooltip]").tooltip();
-
         });
     </script>
     {{-- </div> --}}
@@ -250,9 +194,63 @@
             $('.selectpicker').selectpicker();
         });
 
-        $(document).ready(function() {  
-            $('#checkboxes').multiselect();  
-        });  
+        $(document).ready(function() {
+            $('#checkboxes').multiselect();
+        });
+
+
+    $(document).ready(function() {
+    $('#select-student').on('change', function() {
+        var studentId = $(this).val();
+        var url = "{{ route('student.EnrollCourse', ':id') }}".replace(':id', studentId);
+        if (studentId) {
+          
+            $.ajax({
+                url: url, 
+                type: 'GET',
+                success: function(data) {
+                    $('#courses').empty();
+                    $.each(data, function(index, course) {
+                        $('#courses').append('<option value="' + course.course_id + '">' + course.course_name + '</option>');
+                    });
+
+                    $('#courses').val(data[0].course_id).trigger('change');
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX error: ' + status + ' - ' + error);
+                }
+            });
+        } else {
+            $('#courses').empty();
+            $('#courses').append('<option value="">Select Course</option>');
+        }
+    });
+
+
+    $('#courses').on('change', function() {
+        var selectedCourseId = $(this).val();
+
+        $.ajax({
+            url: "{{ route('student.EnrollCourse', ':id') }}".replace(':id', $('#select-student').val()), 
+            type: 'GET',
+            success: function(data) {
+                var selectedCourse = data.find(course => course.course_id == selectedCourseId);
+                if (selectedCourse) {
+                    $('#courseFee').val(selectedCourse.fee_per_month);
+                    $('#courseDuration').val(selectedCourse.duration);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX error: ' + status + ' - ' + error);
+            }
+        });
+    });
+
+});
+
+
+
+
     </script>
-    
+
 </html>

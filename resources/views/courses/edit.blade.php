@@ -15,53 +15,36 @@
         <div class="col-md-10">
             <div class="panel panel-default">
                 <div class="panel-heading ">
-                    Edit Student
+                    Edit Course
                 </div>
-                <form id="updateStudent" method="POST" action="{{route('projects.update', $project->id)}}">
+                <form id="updateStudent" method="POST" action="{{route('courses.update', $course->id)}}">
                     @method('PUT')
                     @csrf
                     <div class="panel-body">
                         <div class="form-group col-md-10">
-                            <label for="brand">Student Name:</label>
-                            <input type="text" name="student_name"
-                             value =""  
+                            <label for="brand">Course Name:</label>
+                            <input type="text" name="course_name"
+                            value="{{ old('course_name', $course->course_name) }}"   
                              class="form-control" id="usr">
-                            @error('student_name')
+                            @error('course_name')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group col-md-10">
-                            <label for="brand">Student Email:</label>
-                            <input type="email" name="student_email"
-                             value =""  
+                            <label for="brand">Course Duration:</label>
+                            <input type="number" name="duration"
+                            value="{{ old('duration', $course->duration) }}"  min="1" max="24"
                              class="form-control" id="">
-                            @error('student_email')
+                            @error('duration')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group col-md-10">
-                            <label for="brand">Student Phone:</label>
-                            <input type="email" name="student_number"
-                             value =""  
+                            <label for="brand">Fee Per Month:</label>
+                            <input type="number" step="0.01" min="0" name="fee_per_month"
+                            value="{{ old('fee_per_month', $course->fee_per_month) }}"  
                              class="form-control" id="">
-                            @error('student_number')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group col-md-10">
-                            <label for="brand">Student Date of Birth:</label>
-                            <input type="email" name="student_dob"
-                             value =""  
-                             class="form-control" id="">
-                            @error('student_dob')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div><div class="form-group col-md-10">
-                            <label for="brand">Student Date of Birth:</label>
-                            <textarea  name="student_address"
-                             value =""  
-                             class="form-control" id=""> </textarea>
-                            @error('student_address')
+                            @error('fee_per_month')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>

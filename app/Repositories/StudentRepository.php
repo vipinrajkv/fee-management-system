@@ -20,10 +20,10 @@ final class StudentRepository
      * @param array $data
      * @return void
      */
-    public function getStudentDetails(array $data)
-    {
+    // public function getStudentDetails(array $data)
+    // {
 
-    }
+    // }
 
     /**
      * Student create
@@ -33,7 +33,6 @@ final class StudentRepository
      */
     public function create(array $data)
     {
-        dd($data);
         return $this->student->create($data);
     }
 
@@ -58,5 +57,10 @@ final class StudentRepository
     public function delete(Student $student)
     {
         $student->delete();
+    }
+
+    public function getStudents()
+    {
+        return $this->student->all();
     }
 }

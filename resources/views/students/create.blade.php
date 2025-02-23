@@ -32,7 +32,7 @@
                         </div>
                         <div class="form-group col-md-10">
                             <label for="brand">Student Phone:</label>
-                            <input type="email" name="student_number"
+                            <input type="text" name="student_phone"
                              value =""  
                              class="form-control" id="">
                             @error('student_number')
@@ -41,7 +41,7 @@
                         </div>
                         <div class="form-group col-md-10">
                             <label for="brand">Student Date of Birth:</label>
-                            <input type="email" name="student_dob"
+                            <input type="date" name="student_dob"
                              value =""  
                              class="form-control" id="">
                             @error('student_dob')

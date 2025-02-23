@@ -9,7 +9,7 @@
 	{{ session('error') }}
 </div>
 @endif
-<h2 class="text-center">Manage Students</h2>
+<h2 class="text-center">Manage Payments</h2>
 <div class="container-fluid">
     <div class="col-md-10 custyle">
         @if (Session::has('success'))
@@ -23,39 +23,29 @@
             <thead>
                 <tr>
                     <th>Sl No</th>
-                    <th>Name</th>
-                    <th >Email</th>
-                    <th>Phone Number</th>
-                    <th>Date of Birth</th>
-                    <th>Address</th>
-                    <th>Active</th>
-                    <th>Actions</th>
-                    {{-- <th class="text-right">Action</th> --}}
+                    <th>Student Name</th>
+                    <th >Course Name</th>
+                    <th>Payment Type</th>
+                    <th>Total Course Fee</th>
+                    <th>Duration</th>
+                    <th>Fee Per Month</th>
+                    <th>Amount Paid</th>
                 </tr>
             </thead>
+            @foreach ($paymentDetails as $payment)
                 <tr>
-                    <td>11</td>
-                    <td>22</td>
-                    <td >44</td>
-                    <td>12</td>
-                    <td>142</td>
-                    <td>52</td>
-                    <td class="text-center">
-                        <div class="checkbox checbox-switch switch-success">
-                            <label>
-                                <input type="checkbox" name="" checked="" />
-                                <span></span>
-                            </label>
-                        </div>
-                    </td>
-                    <td class="text-center"><a class='btn btn-warning btn-xs' href="" style="margin-top: 11px;">
-                        <span class="glyphicon glyphicon-edit"></span> Suspend</a></td>
-                    <td class="text-center"><a class='btn btn-danger btn-xs' href="" style="margin-top: 11px;">
-                        <span class="glyphicon glyphicon-remove"></span> Reject</a></td>
+                    <td>{{$loop->iteration}}</td>
+                    <td>{{$payment->student_name}}</td>
+                    <td >{{$payment->course_name}}</td>
+                    <td>{{$payment->fee_per_month}}</td>
+                    <td>{{$payment->duration}}</td>
+                    <td>{{$payment->amount_paid}}</td>
+    
                     
                     <td class="text-center"><a class='btn btn-info btn-xs' href="" style="margin-top: 11px;">
                         <span class="glyphicon glyphicon-edit"></span> Edit</a></td>
                 </tr>
+                @endforeach
         </table>
     </div>
 </div>
