@@ -36,8 +36,9 @@
                 <tr>
                     <td>{{$loop->iteration}}</td>
                     <td>{{$payment->student_name}}</td>
-                    <td >{{$payment->course_name}}</td>
-                    <td>{{$payment->fee_per_month}}</td>
+                    <td>{{$payment->course_name}}</td>
+                    <td>{{$payment->payment_type}}</td>
+                    <td>{{$payment->fee_per_month * $payment->duration}}</td>
                     <td>{{$payment->duration}}</td>
                     <td>{{$payment->amount_paid}}</td>
     

@@ -131,6 +131,7 @@ final class CourseRepository
                 'courses.fee_per_month',
                 'courses.duration',
                 'payment_details.amount_paid',
+                'payments.payment_type',
                 'payment_details.date_of_payment',
                 'payment_details.date_of_payment as payment_created_at'
             )

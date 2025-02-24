@@ -73,39 +73,25 @@ final class StudentController extends Controller
     public function studentCourseFeeList(Request $request): View
     {
         $studentCourseFees = $this->studentService->getStudentsCourseFeesList();
-        // dd($studentCourseFees);
+
         return view('students.student_course_fee', compact('studentCourseFees'));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Student $student)
+    public function updateStatus(Request $request)
     {
-        //
+        $studentStatus = $this->studentService->updateStatus($request->student_id, $request->status);
+
+        return response()->json([
+            'success' => true,
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Student $student)
+    public function rejectStudent(int $stdentId)
     {
-        //
-    }
+        $this->studentService->rejectStudent($stdentId);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Student $student)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Student $student)
-    {
-        //
+        return response()->json([
+            'success' => true,
+        ]);
     }
 }

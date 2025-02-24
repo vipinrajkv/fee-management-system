@@ -109,4 +109,14 @@ final class StudentService
     {
         return $this->courseRepository->getStudentFeePayments();
     }
+
+    public function updateStatus($studentId, $status)
+    {
+        return $this->studentRepository->updateStatus($studentId, $status);
+    }
+
+    public function rejectStudent($studentId)
+    {
+        return $this->studentRepository->rejectStudent($studentId);
+    }
 }

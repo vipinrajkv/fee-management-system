@@ -64,12 +64,6 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                {{-- <form class="navbar-form navbar-left" method="GET" role="search">
-					<div class="form-group">
-						<input type="text" name="q" class="form-control" placeholder="Search">
-					</div>
-					<button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
-				</form> --}}
                 <ul class="nav navbar-nav navbar-right">
                     @guest
                         @if (Route::has('login'))
@@ -154,11 +148,12 @@
                                         <div class="panel-body">
                                             <ul class="nav navbar-nav">
                                                 <li><a href="{{ route('add.payment') }}">Add Payment</a></li>
-                                                <li><a href="{{ route('student.fee.payment') }}">View Payments</a></li>
+                                                <li><a href="{{ route('student.fee.payment') }}">View Payments</a>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
-                                </li> 
+                                </li>
                             </ul>
                         </div><!-- /.navbar-collapse -->
                     </nav>
@@ -199,57 +194,103 @@
         });
 
 
-    $(document).ready(function() {
-    $('#select-student').on('change', function() {
-        var studentId = $(this).val();
-        var url = "{{ route('student.EnrollCourse', ':id') }}".replace(':id', studentId);
-        if (studentId) {
-          
-            $.ajax({
-                url: url, 
-                type: 'GET',
-                success: function(data) {
-                    $('#courses').empty();
-                    $.each(data, function(index, course) {
-                        $('#courses').append('<option value="' + course.course_id + '">' + course.course_name + '</option>');
-                    });
+        $(document).ready(function() {
+            $('#select-student').on('change', function() {
+                var studentId = $(this).val();
+                var url = "{{ route('student.EnrollCourse', ':id') }}".replace(':id', studentId);
+                if (studentId) {
 
-                    $('#courses').val(data[0].course_id).trigger('change');
-                },
-                error: function(xhr, status, error) {
-                    console.error('AJAX error: ' + status + ' - ' + error);
+                    $.ajax({
+                        url: url,
+                        type: 'GET',
+                        success: function(data) {
+                            $('#courses').empty();
+                            $.each(data, function(index, course) {
+                                $('#courses').append('<option value="' + course
+                                    .course_id + '">' + course.course_name +
+                                    '</option>');
+                            });
+
+                            $('#courses').val(data[0].course_id).trigger('change');
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('AJAX error: ' + status + ' - ' + error);
+                        }
+                    });
+                } else {
+                    $('#courses').empty();
+                    $('#courses').append('<option value="">Select Course</option>');
                 }
             });
-        } else {
-            $('#courses').empty();
-            $('#courses').append('<option value="">Select Course</option>');
-        }
-    });
 
 
-    $('#courses').on('change', function() {
-        var selectedCourseId = $(this).val();
+            $('#courses').on('change', function() {
+                var selectedCourseId = $(this).val();
 
+                $.ajax({
+                    url: "{{ route('student.EnrollCourse', ':id') }}".replace(':id', $(
+                        '#select-student').val()),
+                    type: 'GET',
+                    success: function(data) {
+                        var selectedCourse = data.find(course => course.course_id ==
+                            selectedCourseId);
+                        if (selectedCourse) {
+                            $('#courseFee').val(selectedCourse.fee_per_month);
+                            $('#courseDuration').val(selectedCourse.duration);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('AJAX error: ' + status + ' - ' + error);
+                    }
+                });
+            });
+
+        });
+
+        $('.status-checkbox').change(function() {
+            var studentId = $(this).data('studentid');
+            var status = $(this).prop('checked') ? 1 : 0;
+   
+            $.ajax({
+                url: '{{ route('student.updateStatus') }}',
+                method: 'POST',
+                data: {
+                    student_id: studentId,
+                    status: status,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    if (response.success) {
+                        alert('Status updated successfully!');
+                        location.reload();
+                    }
+                },
+                error: function(xhr) {
+                    alert('An error occurred');
+                }
+            });
+        });
+
+        $('.reject-btn').click(function(event) {
+            event.preventDefault();
+        var studentId = $(this).data('id');
         $.ajax({
-            url: "{{ route('student.EnrollCourse', ':id') }}".replace(':id', $('#select-student').val()), 
-            type: 'GET',
-            success: function(data) {
-                var selectedCourse = data.find(course => course.course_id == selectedCourseId);
-                if (selectedCourse) {
-                    $('#courseFee').val(selectedCourse.fee_per_month);
-                    $('#courseDuration').val(selectedCourse.duration);
+            url: '{{ route('student.reject', '') }}/' + studentId,
+            method: 'POST',
+            data: {
+                _token: '{{ csrf_token() }}'
+            },
+            success: function(response) {
+                if (response.success) {
+                    alert('Student rejected successfully!');
+                    location.reload();
                 }
             },
-            error: function(xhr, status, error) {
-                console.error('AJAX error: ' + status + ' - ' + error);
+            error: function(xhr) {
+                alert('An error occurred');
             }
         });
     });
-
-});
-
-
-
 
     </script>
 

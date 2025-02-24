@@ -4,11 +4,13 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\PaymentController;
 
-// Auth::routes();
-
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Auth::routes();
+Route::middleware(['auth'])->group(function (){
+Route::get('/', [StudentController::class, 'index'])->name('home');
 Route::resource('courses', CourseController::class);
 Route::resource('students', StudentController::class);
+Route::post('/student/update-status', [StudentController::class, 'updateStatus'])->name('student.updateStatus');
+Route::post('/student/reject/{id}', [StudentController::class, 'rejectStudent'])->name('student.reject');
 Route::get('student/assign-course', [StudentController::class, 'assignToCourse'])->name('student.assign.course');
 Route::post('student/add-course', [StudentController::class, 'addCourseToStudent'])->name('student.add-course');
 Route::get('student/courses-fees-list', [StudentController::class, 'studentCourseFeeList'])->name('student.courses.feeslist');
@@ -18,4 +20,5 @@ Route::get('payments/view-payment', [PaymentController::class, 'viewPaymenta'])-
 Route::get('payments/payment-list', [PaymentController::class, 'index'])->name('student.fee.payment');
 Route::get('student-courses/{id}', [CourseController::class, 'getStudentEnrollCourse'])->name('student.EnrollCourse');
 Route::resource('courses', CourseController::class);
+});
 

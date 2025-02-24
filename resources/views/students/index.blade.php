@@ -35,14 +35,14 @@
                     <td class="text-center">
                         <div class="checkbox checbox-switch switch-success">
                             <label>
-                                <input type="checkbox" name="" {{ $student->status == 1 ? 'checked' : '' }} />
+                                <input type="checkbox" class="status-checkbox" data-studentId="{{$student->id}}" name="activeStatus" {{ $student->is_active == 1 ? 'checked' : '' }} />
                                 <span></span>
                             </label>
                         </div>
                     </td>
                     <td class="text-center"><a class='btn btn-warning btn-xs' href="" style="margin-top: 11px;">
                         <span class="glyphicon glyphicon-edit"></span> Suspend</a></td>
-                    <td class="text-center"><a class='btn btn-danger btn-xs' href="" style="margin-top: 11px;">
+                    <td class="text-center"><a class='btn btn-danger btn-xs reject-btn' data-id="{{$student->id}}" href="" style="margin-top: 11px;">
                         <span class="glyphicon glyphicon-remove"></span> Reject</a></td>
                 </tr>            
             @endforeach

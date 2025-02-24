@@ -20,17 +20,6 @@ final class StudentRepository
      * @param array $data
      * @return void
      */
-    // public function getStudentDetails(array $data)
-    // {
-
-    // }
-
-    /**
-     * Student create
-     *
-     * @param array $data
-     * @return void
-     */
     public function create(array $data)
     {
         return $this->student->create($data);
@@ -62,5 +51,22 @@ final class StudentRepository
     public function getStudents()
     {
         return $this->student->all();
+    }
+
+    public function updateStatus($studentId, $status)
+    {
+        $student = $this->student->findOrFail($studentId);
+        $student->update(['is_active' => 0]);
+
+        return response()->json(['success' => true]);
+    }
+    
+
+    public function rejectStudent($studentId)
+    {
+        $student = $this->student->findOrFail($studentId);
+        $student->delete();
+
+        return response()->json(['success' => true]);
     }
 }
